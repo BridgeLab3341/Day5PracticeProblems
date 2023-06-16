@@ -39,6 +39,34 @@ namespace Day5PracticeProblems
                 }
             }
             return array;
-        }      
+        }
+        public void DeleteElementInArrayUsingGenerics()
+        {
+            object[] array = { 10, 3.14, 'A', 5, 2.71, 'B', 'C', 7 };
+            array = DeleteMethod(array, typeof(int), typeof(double));
+            Console.WriteLine("Modified Array");
+            foreach (var item in array)
+            {
+                Console.WriteLine(item);
+            }
+        }
+        public static object[] DeleteMethodGenerics<T1, T2>(object[] array)
+        {
+            object[] newArray = new object[array.Length];
+            int newIndex = 0;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (!(array[i] is T1) && !(array[i] is T2))
+                {
+                    // Copy the element to the new array if it doesn't match the specified types
+                    newArray[newIndex] = array[i];
+                    newIndex++;
+                }
+            }
+            Array.Resize(ref newArray, newIndex);
+
+            return newArray;
+        }
     }
 }
