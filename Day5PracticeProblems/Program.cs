@@ -14,9 +14,9 @@
             //DeleteArray<char> deleteArray2 = new DeleteArray<char>(CharArray);
             //deleteArray2.DeleteUsingGenerics('d');
             FindMinimum find=new FindMinimum();
-            //find.FindMinInteger();
-            //find.FindMinFloat();
-            find.FindMinStrings();
+            find.FindMinInteger<int>(2,3,4);
+            find.FindMinFloat<float>(2.4f,4.5f,1.3f);
+            find.FindMinStrings<string>("standard","movie","ticket");
         }
     }
 }
