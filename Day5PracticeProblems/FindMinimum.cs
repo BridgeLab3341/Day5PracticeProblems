@@ -6,52 +6,30 @@ using System.Threading.Tasks;
 
 namespace Day5PracticeProblems
 {
-    public class FindMinimum
+    public class FindMinimum<T> where T : IComparable
     {
-        public void FindMinInteger<T>(T a, T b, T c) where T : IComparable
+        T a, b, c;
+        public FindMinimum(T a, T b, T c)
         {
-          if (a.CompareTo(b) < 0 && a.CompareTo(c) < 0 || a.CompareTo(b) <= 0 && a.CompareTo(c) < 0 || a.CompareTo(b) < 0 && a.CompareTo(c) <= 0)
-            {
-                Console.WriteLine("{0} is Minimum", a);
-            }
-            if (b.CompareTo(a) < 0 && b.CompareTo(c) < 0 || b.CompareTo(a) <= 0 && b.CompareTo(c) < 0 || b.CompareTo(a) < 0 && b.CompareTo(c) <= 0)
-            {
-                Console.WriteLine("{0} is Minimum", b);
-            }
-            if (c.CompareTo(a) < 0 && c.CompareTo(b) < 0 || c.CompareTo(a) <= 0 && c.CompareTo(b) < 0 || c.CompareTo(a) < 0 && c.CompareTo(b) <= 0)
-            {
-                Console.WriteLine("{0} is Minimum", c);
-            }
+            this.a = a;
+            this.b = b;
+            this.c = c;
         }
-        public void FindMinFloat<T>(T a, T b, T c) where T : IComparable
+        public void FindMin()
         {
-            if (a.CompareTo(b) < 0 && a.CompareTo(c) < 0 || a.CompareTo(b) <= 0 && a.CompareTo(c) < 0 || a.CompareTo(b) < 0 && a.CompareTo(c) <= 0)
+            if (this.a.CompareTo(b) < 0 && this.a.CompareTo(this.c) < 0 || this.a.CompareTo(this.b) <= 0 && this.a.CompareTo(this.c) < 0 || this.a.CompareTo(this.b) < 0 && this.a.CompareTo(this.c) <= 0)
             {
-                Console.WriteLine("{0} is Minimum", a);
+                Console.WriteLine("{0} is Minimum", this.a);
             }
-            if (b.CompareTo(a) < 0 && b.CompareTo(c) < 0 || b.CompareTo(a) <= 0 && b.CompareTo(c) < 0 || b.CompareTo(a) < 0 && b.CompareTo(c) <= 0)
+            if (this.b.CompareTo(this.a) < 0 && b.CompareTo(this.c) < 0 || this.b.CompareTo(this.a) <= 0 && this.b.CompareTo(this.c) < 0 || this.b.CompareTo(this.a) < 0 && this.b.CompareTo(this.c) <= 0)
             {
-                Console.WriteLine("{0} is Minimum", b);
+                Console.WriteLine("{0} is Minimum", this.b);
             }
-            if (c.CompareTo(a) < 0 && c.CompareTo(b) < 0 || c.CompareTo(a) <= 0 && c.CompareTo(b) < 0 || c.CompareTo(a) < 0 && c.CompareTo(b) <= 0)
+            if (this.c.CompareTo(this.a) < 0 && this.c.CompareTo(this.b) < 0 || this.c.CompareTo(this.a) <= 0 && this.c.CompareTo(this.b) < 0 || this.c.CompareTo(this.a) < 0 && this.c.CompareTo(this.b) <= 0)
             {
-                Console.WriteLine("{0} is Minimum", c);
-            }
-        }
-        public void FindMinStrings<T>(T a, T b, T c) where T : IComparable
-        {
-            if (a.CompareTo(b) < 0 && a.CompareTo(c) < 0 || a.CompareTo(b) <= 0 && a.CompareTo(c) < 0 || a.CompareTo(b) < 0 && a.CompareTo(c) <= 0)
-            {
-                Console.WriteLine("{0} is Minimum", a);
-            }
-            if (b.CompareTo(a) < 0 && b.CompareTo(c) < 0 || b.CompareTo(a) <= 0 && b.CompareTo(c) < 0 || b.CompareTo(a) < 0 && b.CompareTo(c) <= 0)
-            {
-                Console.WriteLine("{0} is Minimum", b);
-            }
-            if (c.CompareTo(a) < 0 && c.CompareTo(b) < 0 || c.CompareTo(a) <= 0 && c.CompareTo(b) < 0 || c.CompareTo(a) < 0 && c.CompareTo(b) <= 0)
-            {
-                Console.WriteLine("{0} is Minimum", c);
+                Console.WriteLine("{0} is Minimum", this.c);
             }
         }
     }
 }
+
