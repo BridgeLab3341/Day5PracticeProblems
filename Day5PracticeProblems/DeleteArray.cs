@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,36 +11,92 @@ namespace Day5PracticeProblems
 {
     public class DeleteArray
     {
+        int[] intarray = { 1, 3, 6, 4, 7, 8, 10, 2, 5, 9 };
+        double[] doublearray = { 1.3, 3.3, 6.7, 4.8, 7.3, 8.2, 10.9, 2.2, 5.4, 9.6 };
+        char[] chararray = { 'a', 'b', 'c', 'g', 'f', 'e' };
         public void DeleteElementInArray()
         {
-            object[] array = { 10, 3.14, 'A', 5, 2.71, 'B', 'C', 7 };
-            array =DeleteMethod(array, typeof(int),typeof(double));
-            Console.WriteLine("Modified Array");
-            foreach (var item in array)
+            bool flag=true;
+            while(flag)
             {
-                Console.WriteLine(item);
-            }
-        }
-        public static object[] DeleteMethod(object[] array, params Type[] types)
-        {
-            for(int i= array.Length - 1; i>=0; i--)
-            {
-                foreach(Type type in types)
+                Console.WriteLine("Select Array to Delete Element\n1.Integers\n2.Float\n3.Char\n4.Exit");
+                int option=Convert.ToInt32(Console.ReadLine());
+                switch(option)
                 {
-                    if (array[i].GetType() == type)
-                    {
-                        // Delete the element at index i by shifting all subsequent elements to the left
-                        for (int j=i; j < array.Length -1; j++)
-                        {
-                            array[j] = array[j+1];
-                        }
-                        // Resize the array to exclude the deleted element
-                        Array.Resize(ref array, array.Length - 1);
-                        break;// Found a matching type, no need to continue the inner loop
-                    }
+                    case 1:
+                        DeleteInteger();
+                        break;
+                        case 2:
+                        DeletDouble();
+                        break; 
+                    case 3:
+                        DeleteChar();
+                        break;
+                        case 4:
+                        flag= false;
+                        break;
                 }
             }
-            return array;
-        }      
+        }
+        public void DeleteInteger()
+        {
+            int[] arr=new int[10];
+            int a = 0;
+            Console.WriteLine("Enter Element to be Delete");
+            int search=Convert.ToInt32(Console.ReadLine());
+            for(int i=0; i<intarray.Length; i++)
+            {
+                if (intarray[i] != search)
+                {
+                    arr[a] = intarray[i];
+                    a++;
+                }
+            }
+            intarray = arr;
+            for(int i=0; i<a; i++)
+            {
+                Console.WriteLine(intarray[i]);
+            }
+        }
+        public void DeletDouble()
+        {
+            double[] arr=new double[10];
+            int a = 0;
+            Console.WriteLine("Enter Elements to be Deleted");
+            double search=Convert.ToDouble(Console.ReadLine());
+            for(int i=0; i<doublearray.Length; i++)
+            {
+                if (doublearray[i] != search)
+                {
+                    arr[a]= doublearray[i];
+                    a++;
+                }
+            }
+            doublearray = arr;
+            for(int i=0; i<a;i++)
+            {
+                Console.WriteLine(doublearray[i]);
+            }
+        }
+        public void DeleteChar()
+        {
+            char[] arr=new char[10];
+            int a = 0;
+            Console.WriteLine("Enter Element to be Delete");
+            char search=Convert.ToChar(Console.ReadLine());
+            for(int i=0; i<chararray.Length;i++)
+            {
+                if (chararray[i] != search)
+                {
+                    arr[a]= chararray[i];
+                    a++;
+                }
+            }
+            chararray = arr;
+            for(int i=0; i<a;i++)
+            {
+                Console.WriteLine(chararray[i]);
+            }
+        }
     }
 }
