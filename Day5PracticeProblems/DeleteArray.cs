@@ -9,64 +9,61 @@ namespace Day5PracticeProblems
 {
     public class DeleteArray
     {
+        int[] intarray = { 1, 3, 6, 4, 7, 8, 10, 2, 5, 9 };
+        double[] doublearray = { 1.3, 3.3, 6.7, 4.8, 7.3, 8.2, 10.9, 2.2, 5.4, 9.6 };
+        char[] chararray = { 'a', 'b', 'c', 'g', 'f', 'e' };
+        public void DeleteUsingGenerics<T>(T[] arr, T search) where T : IComparable
+        {
+            T[] arr1 = new T[10];
+            int k = 0;
+            int flag = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i].Equals(search))
+                {
+                    flag = 1;
+                }
+                if (flag == 0)
+                {
+                    arr1[k] = arr[i];
+                    k++;
+                }
+            }
+            arr = arr1;
+            for (int i = 0; i < k; i++)
+            {
+                Console.WriteLine(arr[i]);
+            }
+        }
         public void DeleteElementInArray()
         {
-            object[] array = { 10, 3.14, 'A', 5, 2.71, 'B', 'C', 7 };
-            array =DeleteMethod(array, typeof(int),typeof(double));
-            Console.WriteLine("Modified Array");
-            foreach (var item in array)
+            bool flag = true;
+            while (flag)
             {
-                Console.WriteLine(item);
-            }
-        }
-        public static object[] DeleteMethod(object[] array, params Type[] types)
-        {
-            for(int i= array.Length - 1; i>=0; i--)
-            {
-                foreach(Type type in types)
+                Console.WriteLine("Select Array to delete Element \n 1. IntArray \n 2. FloatArray \n 3. CharArray \n 4. Exit ");
+                int option = Convert.ToInt32(Console.ReadLine());
+                switch (option)
                 {
-                    if (array[i].GetType() == type)
-                    {
-                        // Delete the element at index i by shifting all subsequent elements to the left
-                        for (int j=i; j < array.Length -1; j++)
-                        {
-                            array[j] = array[j+1];
-                        }
-                        // Resize the array to exclude the deleted element
-                        Array.Resize(ref array, array.Length - 1);
-                        break;// Found a matching type, no need to continue the inner loop
-                    }
+                    case 1:
+                        Console.WriteLine("Enter the element you want to delete");
+                        int search = Convert.ToInt32(Console.ReadLine());
+                        DeleteUsingGenerics<int>(intarray, search);
+                        break;
+                    case 2: 
+                        Console.WriteLine("Enter the element you want to delete");
+                        double search1 = Convert.ToDouble(Console.ReadLine());
+                        DeleteUsingGenerics<double>(doublearray, search1);
+                        break;
+                    case 3:
+                        Console.WriteLine("Enter the element you want to delete");
+                        char search2 = Convert.ToChar(Console.ReadLine());
+                        DeleteUsingGenerics<char>(chararray, search2);
+                        break;
+                    default:
+                        flag = false;
+                        break;
                 }
             }
-            return array;
-        }
-        public void DeleteElementInArrayUsingGenerics()
-        {
-            object[] array = { 10, 3.14, 'A', 5, 2.71, 'B', 'C', 7 };
-            array = DeleteMethod(array, typeof(int), typeof(double));
-            Console.WriteLine("Modified Array");
-            foreach (var item in array)
-            {
-                Console.WriteLine(item);
-            }
-        }
-        public static object[] DeleteMethodGenerics<T1, T2>(object[] array)
-        {
-            object[] newArray = new object[array.Length];
-            int newIndex = 0;
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (!(array[i] is T1) && !(array[i] is T2))
-                {
-                    // Copy the element to the new array if it doesn't match the specified types
-                    newArray[newIndex] = array[i];
-                    newIndex++;
-                }
-            }
-            Array.Resize(ref newArray, newIndex);
-
-            return newArray;
         }
     }
 }
